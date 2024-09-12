@@ -95,23 +95,15 @@ int main(void)
   	  HAL_GPIO_WritePin(LED_REDY_GPIO_Port, LED_REDY_Pin, GPIO_PIN_RESET);
   	  HAL_GPIO_WritePin(LED_YELLOWY_GPIO_Port, LED_YELLOWY_Pin, GPIO_PIN_RESET);
   	  HAL_GPIO_WritePin(LED_GREENY_GPIO_Port, LED_GREENY_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED6_GPIO_Port, LED6_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED7_GPIO_Port, LED7_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED8_GPIO_Port, LED8_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED9_GPIO_Port, LED9_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED10_GPIO_Port, LED10_Pin, GPIO_PIN_RESET);
-  	  HAL_GPIO_WritePin(LED11_GPIO_Port, LED11_Pin, GPIO_PIN_RESET);
-
+  	  TurnOnAllLed();
+  	  int counter = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  counter = Exercise9(counter);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
