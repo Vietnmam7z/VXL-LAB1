@@ -104,13 +104,48 @@ int main(void)
   	  HAL_GPIO_WritePin(LED9_GPIO_Port, LED9_Pin, GPIO_PIN_RESET);
   	  HAL_GPIO_WritePin(LED10_GPIO_Port, LED10_Pin, GPIO_PIN_RESET);
   	  HAL_GPIO_WritePin(LED11_GPIO_Port, LED11_Pin, GPIO_PIN_RESET);
-
+	  int counter = 0;
+  	  int sec = 0;
+  	  int min = 0;
+  	  int hour = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	if(counter >= 5){
+		counter = 0;
+		sec++;
+		Exercise10(sec);
+	}
+	if(sec >= 12){
+		sec = 0;
+		min++;
+		Exercise10(min);
+	}
+	setNumberOnClock(sec);
+	if(min >= 60){
+		min = 0;
+		hour++;
+		Exercise10(hour);
+	}
+	if(min != 0){
+		int num = min/5 - 1;
+		setNumberOnClock(num);
+	}
+	if(min == 0){
+		int num = min/5;
+		setNumberOnClock(num);
+	}
+	if(hour >= 12){
+		hour = 0;
+		Exercise10(hour);
+	}
+	setNumberOnClock(hour);
+	if(counter >= 5) counter = 0;
+	HAL_Delay(1000);
+	counter++;
 
     /* USER CODE END WHILE */
 
