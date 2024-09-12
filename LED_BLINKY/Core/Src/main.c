@@ -111,7 +111,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Exercise4(counter);
+	  counter = Exercise4(counter);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
