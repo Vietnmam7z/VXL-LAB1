@@ -8,7 +8,7 @@
 #ifndef INC_LED_BLINKY_H_
 #define INC_LED_BLINKY_H_
 void Exercise1(void);
-void Exercise2(void);
+int Exercise2(int num);
 void Exercise3(void);
 void Display7Seg(int x);
 int Exercise4(int counter);
