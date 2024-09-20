@@ -65,8 +65,8 @@ all: main-build
 main-build: LED_BLINKY.elf secondary-outputs
 
 # Tool invocations
-LED_BLINKY.elf: $(OBJS) $(USER_OBJS) G:\VXL\VXL-LAB1\LAB1\LED_BLINKY\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "LED_BLINKY.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"G:\VXL\VXL-LAB1\LAB1\LED_BLINKY\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LED_BLINKY.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+LED_BLINKY.elf: $(OBJS) $(USER_OBJS) G:\VXL\LED_BLINKY\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "LED_BLINKY.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"G:\VXL\LED_BLINKY\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LED_BLINKY.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
