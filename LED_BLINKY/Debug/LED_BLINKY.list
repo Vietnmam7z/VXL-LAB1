@@ -1037,6 +1037,10 @@ int main(void)
  80008d0:	2110      	movs	r1, #16
  80008d2:	486a      	ldr	r0, [pc, #424]	; (8000a7c <main+0x284>)
  80008d4:	f000 fcd8 	bl	8001288 <HAL_GPIO_WritePin>
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
   	  int counter1 = 6;
  80008d8:	2306      	movs	r3, #6
  80008da:	60fb      	str	r3, [r7, #12]
@@ -1046,220 +1050,217 @@ int main(void)
   	  int counter3 = 0;
  80008e0:	2300      	movs	r3, #0
  80008e2:	607b      	str	r3, [r7, #4]
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
 	    if (counter1 > 2 && counter2 > 0 && counter3 <= 0) {
  80008e4:	68fb      	ldr	r3, [r7, #12]
  80008e6:	2b02      	cmp	r3, #2
- 80008e8:	dd1c      	ble.n	8000924 <main+0x12c>
+ 80008e8:	dd28      	ble.n	800093c <main+0x144>
  80008ea:	68bb      	ldr	r3, [r7, #8]
  80008ec:	2b00      	cmp	r3, #0
- 80008ee:	dd19      	ble.n	8000924 <main+0x12c>
+ 80008ee:	dd25      	ble.n	800093c <main+0x144>
  80008f0:	687b      	ldr	r3, [r7, #4]
  80008f2:	2b00      	cmp	r3, #0
- 80008f4:	dc16      	bgt.n	8000924 <main+0x12c>
+ 80008f4:	dc22      	bgt.n	800093c <main+0x144>
+	    	HAL_GPIO_WritePin(LED_YELLOWX_GPIO_Port, LED_YELLOWX_Pin, GPIO_PIN_RESET);
+ 80008f6:	2200      	movs	r2, #0
+ 80008f8:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 80008fc:	4860      	ldr	r0, [pc, #384]	; (8000a80 <main+0x288>)
+ 80008fe:	f000 fcc3 	bl	8001288 <HAL_GPIO_WritePin>
+	    	HAL_GPIO_WritePin(LED_REDY_GPIO_Port, LED_REDY_Pin, GPIO_PIN_RESET);
+ 8000902:	2200      	movs	r2, #0
+ 8000904:	f44f 6180 	mov.w	r1, #1024	; 0x400
+ 8000908:	485d      	ldr	r0, [pc, #372]	; (8000a80 <main+0x288>)
+ 800090a:	f000 fcbd 	bl	8001288 <HAL_GPIO_WritePin>
 	        HAL_GPIO_WritePin(LED_REDX_GPIO_Port, LED_REDX_Pin, GPIO_PIN_SET);
- 80008f6:	2201      	movs	r2, #1
- 80008f8:	2180      	movs	r1, #128	; 0x80
- 80008fa:	4861      	ldr	r0, [pc, #388]	; (8000a80 <main+0x288>)
- 80008fc:	f000 fcc4 	bl	8001288 <HAL_GPIO_WritePin>
+ 800090e:	2201      	movs	r2, #1
+ 8000910:	2180      	movs	r1, #128	; 0x80
+ 8000912:	485b      	ldr	r0, [pc, #364]	; (8000a80 <main+0x288>)
+ 8000914:	f000 fcb8 	bl	8001288 <HAL_GPIO_WritePin>
 	        HAL_GPIO_WritePin(LED_GREENY_GPIO_Port, LED_GREENY_Pin, GPIO_PIN_SET);
- 8000900:	2201      	movs	r2, #1
- 8000902:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 8000906:	485e      	ldr	r0, [pc, #376]	; (8000a80 <main+0x288>)
- 8000908:	f000 fcbe 	bl	8001288 <HAL_GPIO_WritePin>
+ 8000918:	2201      	movs	r2, #1
+ 800091a:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+ 800091e:	4858      	ldr	r0, [pc, #352]	; (8000a80 <main+0x288>)
+ 8000920:	f000 fcb2 	bl	8001288 <HAL_GPIO_WritePin>
 	        counter1--;
- 800090c:	68fb      	ldr	r3, [r7, #12]
- 800090e:	3b01      	subs	r3, #1
- 8000910:	60fb      	str	r3, [r7, #12]
+ 8000924:	68fb      	ldr	r3, [r7, #12]
+ 8000926:	3b01      	subs	r3, #1
+ 8000928:	60fb      	str	r3, [r7, #12]
 	        counter2--;
- 8000912:	68bb      	ldr	r3, [r7, #8]
- 8000914:	3b01      	subs	r3, #1
- 8000916:	60bb      	str	r3, [r7, #8]
+ 800092a:	68bb      	ldr	r3, [r7, #8]
+ 800092c:	3b01      	subs	r3, #1
+ 800092e:	60bb      	str	r3, [r7, #8]
 	        Display7Seg(counter1);
- 8000918:	68f8      	ldr	r0, [r7, #12]
- 800091a:	f7ff fc17 	bl	800014c <Display7Seg>
+ 8000930:	68f8      	ldr	r0, [r7, #12]
+ 8000932:	f7ff fc0b 	bl	800014c <Display7Seg>
 	        Display7Seg2(counter2);
- 800091e:	68b8      	ldr	r0, [r7, #8]
- 8000920:	f7ff fd9a 	bl	8000458 <Display7Seg2>
+ 8000936:	68b8      	ldr	r0, [r7, #8]
+ 8000938:	f7ff fd8e 	bl	8000458 <Display7Seg2>
 	    }
 	    if (counter1 == 2 && counter2 <= 0) {
- 8000924:	68fb      	ldr	r3, [r7, #12]
- 8000926:	2b02      	cmp	r3, #2
- 8000928:	d116      	bne.n	8000958 <main+0x160>
- 800092a:	68bb      	ldr	r3, [r7, #8]
- 800092c:	2b00      	cmp	r3, #0
- 800092e:	dc13      	bgt.n	8000958 <main+0x160>
+ 800093c:	68fb      	ldr	r3, [r7, #12]
+ 800093e:	2b02      	cmp	r3, #2
+ 8000940:	d116      	bne.n	8000970 <main+0x178>
+ 8000942:	68bb      	ldr	r3, [r7, #8]
+ 8000944:	2b00      	cmp	r3, #0
+ 8000946:	dc13      	bgt.n	8000970 <main+0x178>
 	        HAL_GPIO_WritePin(LED_GREENY_GPIO_Port, LED_GREENY_Pin, GPIO_PIN_RESET);
- 8000930:	2200      	movs	r2, #0
- 8000932:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 8000936:	4852      	ldr	r0, [pc, #328]	; (8000a80 <main+0x288>)
- 8000938:	f000 fca6 	bl	8001288 <HAL_GPIO_WritePin>
+ 8000948:	2200      	movs	r2, #0
+ 800094a:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+ 800094e:	484c      	ldr	r0, [pc, #304]	; (8000a80 <main+0x288>)
+ 8000950:	f000 fc9a 	bl	8001288 <HAL_GPIO_WritePin>
 	        HAL_GPIO_WritePin(LED_YELLOWY_GPIO_Port, LED_YELLOWY_Pin, GPIO_PIN_SET);
- 800093c:	2201      	movs	r2, #1
- 800093e:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 8000942:	484f      	ldr	r0, [pc, #316]	; (8000a80 <main+0x288>)
- 8000944:	f000 fca0 	bl	8001288 <HAL_GPIO_WritePin>
+ 8000954:	2201      	movs	r2, #1
+ 8000956:	f44f 6100 	mov.w	r1, #2048	; 0x800
+ 800095a:	4849      	ldr	r0, [pc, #292]	; (8000a80 <main+0x288>)
+ 800095c:	f000 fc94 	bl	8001288 <HAL_GPIO_WritePin>
 	        counter2 = 2;
- 8000948:	2302      	movs	r3, #2
- 800094a:	60bb      	str	r3, [r7, #8]
+ 8000960:	2302      	movs	r3, #2
+ 8000962:	60bb      	str	r3, [r7, #8]
 	        Display7Seg(counter1);
- 800094c:	68f8      	ldr	r0, [r7, #12]
- 800094e:	f7ff fbfd 	bl	800014c <Display7Seg>
+ 8000964:	68f8      	ldr	r0, [r7, #12]
+ 8000966:	f7ff fbf1 	bl	800014c <Display7Seg>
 	        Display7Seg2(counter2);
- 8000952:	68b8      	ldr	r0, [r7, #8]
- 8000954:	f7ff fd80 	bl	8000458 <Display7Seg2>
+ 800096a:	68b8      	ldr	r0, [r7, #8]
+ 800096c:	f7ff fd74 	bl	8000458 <Display7Seg2>
 	    }
 	    if (counter1 <= 2 && counter2 <= 2 && counter1 == counter2) {
- 8000958:	68fb      	ldr	r3, [r7, #12]
- 800095a:	2b02      	cmp	r3, #2
- 800095c:	dc12      	bgt.n	8000984 <main+0x18c>
- 800095e:	68bb      	ldr	r3, [r7, #8]
- 8000960:	2b02      	cmp	r3, #2
- 8000962:	dc0f      	bgt.n	8000984 <main+0x18c>
- 8000964:	68fa      	ldr	r2, [r7, #12]
- 8000966:	68bb      	ldr	r3, [r7, #8]
- 8000968:	429a      	cmp	r2, r3
- 800096a:	d10b      	bne.n	8000984 <main+0x18c>
-	        Display7Seg(counter1);
- 800096c:	68f8      	ldr	r0, [r7, #12]
- 800096e:	f7ff fbed 	bl	800014c <Display7Seg>
-	        Display7Seg2(counter2);
- 8000972:	68b8      	ldr	r0, [r7, #8]
- 8000974:	f7ff fd70 	bl	8000458 <Display7Seg2>
-	        counter1--;
- 8000978:	68fb      	ldr	r3, [r7, #12]
- 800097a:	3b01      	subs	r3, #1
- 800097c:	60fb      	str	r3, [r7, #12]
-	        counter2--;
+ 8000970:	68fb      	ldr	r3, [r7, #12]
+ 8000972:	2b02      	cmp	r3, #2
+ 8000974:	dc12      	bgt.n	800099c <main+0x1a4>
+ 8000976:	68bb      	ldr	r3, [r7, #8]
+ 8000978:	2b02      	cmp	r3, #2
+ 800097a:	dc0f      	bgt.n	800099c <main+0x1a4>
+ 800097c:	68fa      	ldr	r2, [r7, #12]
  800097e:	68bb      	ldr	r3, [r7, #8]
- 8000980:	3b01      	subs	r3, #1
- 8000982:	60bb      	str	r3, [r7, #8]
+ 8000980:	429a      	cmp	r2, r3
+ 8000982:	d10b      	bne.n	800099c <main+0x1a4>
+	        Display7Seg(counter1);
+ 8000984:	68f8      	ldr	r0, [r7, #12]
+ 8000986:	f7ff fbe1 	bl	800014c <Display7Seg>
+	        Display7Seg2(counter2);
+ 800098a:	68b8      	ldr	r0, [r7, #8]
+ 800098c:	f7ff fd64 	bl	8000458 <Display7Seg2>
+	        counter1--;
+ 8000990:	68fb      	ldr	r3, [r7, #12]
+ 8000992:	3b01      	subs	r3, #1
+ 8000994:	60fb      	str	r3, [r7, #12]
+	        counter2--;
+ 8000996:	68bb      	ldr	r3, [r7, #8]
+ 8000998:	3b01      	subs	r3, #1
+ 800099a:	60bb      	str	r3, [r7, #8]
 	    }
 	    if (counter1 <= -1 && counter2 <= -1 && counter3 == 0) {
- 8000984:	68fb      	ldr	r3, [r7, #12]
- 8000986:	2b00      	cmp	r3, #0
- 8000988:	da22      	bge.n	80009d0 <main+0x1d8>
- 800098a:	68bb      	ldr	r3, [r7, #8]
- 800098c:	2b00      	cmp	r3, #0
- 800098e:	da1f      	bge.n	80009d0 <main+0x1d8>
- 8000990:	687b      	ldr	r3, [r7, #4]
- 8000992:	2b00      	cmp	r3, #0
- 8000994:	d11c      	bne.n	80009d0 <main+0x1d8>
+ 800099c:	68fb      	ldr	r3, [r7, #12]
+ 800099e:	2b00      	cmp	r3, #0
+ 80009a0:	da22      	bge.n	80009e8 <main+0x1f0>
+ 80009a2:	68bb      	ldr	r3, [r7, #8]
+ 80009a4:	2b00      	cmp	r3, #0
+ 80009a6:	da1f      	bge.n	80009e8 <main+0x1f0>
+ 80009a8:	687b      	ldr	r3, [r7, #4]
+ 80009aa:	2b00      	cmp	r3, #0
+ 80009ac:	d11c      	bne.n	80009e8 <main+0x1f0>
 	    	        HAL_GPIO_WritePin(LED_YELLOWY_GPIO_Port, LED_YELLOWY_Pin, GPIO_PIN_RESET);
- 8000996:	2200      	movs	r2, #0
- 8000998:	f44f 6100 	mov.w	r1, #2048	; 0x800
- 800099c:	4838      	ldr	r0, [pc, #224]	; (8000a80 <main+0x288>)
- 800099e:	f000 fc73 	bl	8001288 <HAL_GPIO_WritePin>
+ 80009ae:	2200      	movs	r2, #0
+ 80009b0:	f44f 6100 	mov.w	r1, #2048	; 0x800
+ 80009b4:	4832      	ldr	r0, [pc, #200]	; (8000a80 <main+0x288>)
+ 80009b6:	f000 fc67 	bl	8001288 <HAL_GPIO_WritePin>
 	    	        HAL_GPIO_WritePin(LED_REDX_GPIO_Port, LED_REDX_Pin, GPIO_PIN_RESET);
- 80009a2:	2200      	movs	r2, #0
- 80009a4:	2180      	movs	r1, #128	; 0x80
- 80009a6:	4836      	ldr	r0, [pc, #216]	; (8000a80 <main+0x288>)
- 80009a8:	f000 fc6e 	bl	8001288 <HAL_GPIO_WritePin>
-	    	        HAL_GPIO_WritePin(LED_REDY_GPIO_Port, LED_REDY_Pin, GPIO_PIN_RESET);
- 80009ac:	2200      	movs	r2, #0
- 80009ae:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 80009b2:	4833      	ldr	r0, [pc, #204]	; (8000a80 <main+0x288>)
- 80009b4:	f000 fc68 	bl	8001288 <HAL_GPIO_WritePin>
-	    	        HAL_GPIO_WritePin(LED_GREENX_GPIO_Port, LED_GREENX_Pin, GPIO_PIN_SET);
- 80009b8:	2201      	movs	r2, #1
- 80009ba:	f44f 7100 	mov.w	r1, #512	; 0x200
+ 80009ba:	2200      	movs	r2, #0
+ 80009bc:	2180      	movs	r1, #128	; 0x80
  80009be:	4830      	ldr	r0, [pc, #192]	; (8000a80 <main+0x288>)
  80009c0:	f000 fc62 	bl	8001288 <HAL_GPIO_WritePin>
+	    	        HAL_GPIO_WritePin(LED_REDY_GPIO_Port, LED_REDY_Pin, GPIO_PIN_SET);
+ 80009c4:	2201      	movs	r2, #1
+ 80009c6:	f44f 6180 	mov.w	r1, #1024	; 0x400
+ 80009ca:	482d      	ldr	r0, [pc, #180]	; (8000a80 <main+0x288>)
+ 80009cc:	f000 fc5c 	bl	8001288 <HAL_GPIO_WritePin>
+	    	        HAL_GPIO_WritePin(LED_GREENX_GPIO_Port, LED_GREENX_Pin, GPIO_PIN_SET);
+ 80009d0:	2201      	movs	r2, #1
+ 80009d2:	f44f 7100 	mov.w	r1, #512	; 0x200
+ 80009d6:	482a      	ldr	r0, [pc, #168]	; (8000a80 <main+0x288>)
+ 80009d8:	f000 fc56 	bl	8001288 <HAL_GPIO_WritePin>
 	    	        counter1 = 4;
- 80009c4:	2304      	movs	r3, #4
- 80009c6:	60fb      	str	r3, [r7, #12]
+ 80009dc:	2304      	movs	r3, #4
+ 80009de:	60fb      	str	r3, [r7, #12]
 	    	        counter2 = 6;
- 80009c8:	2306      	movs	r3, #6
- 80009ca:	60bb      	str	r3, [r7, #8]
+ 80009e0:	2306      	movs	r3, #6
+ 80009e2:	60bb      	str	r3, [r7, #8]
 	    	        counter3 = 1;
- 80009cc:	2301      	movs	r3, #1
- 80009ce:	607b      	str	r3, [r7, #4]
-	    	    }
-	    	    if (counter2 > 2 && counter1 > 0 && counter3 == 1) {
- 80009d0:	68bb      	ldr	r3, [r7, #8]
- 80009d2:	2b02      	cmp	r3, #2
- 80009d4:	dd11      	ble.n	80009fa <main+0x202>
- 80009d6:	68fb      	ldr	r3, [r7, #12]
- 80009d8:	2b00      	cmp	r3, #0
- 80009da:	dd0e      	ble.n	80009fa <main+0x202>
- 80009dc:	687b      	ldr	r3, [r7, #4]
- 80009de:	2b01      	cmp	r3, #1
- 80009e0:	d10b      	bne.n	80009fa <main+0x202>
-	    	        counter1--;
- 80009e2:	68fb      	ldr	r3, [r7, #12]
- 80009e4:	3b01      	subs	r3, #1
- 80009e6:	60fb      	str	r3, [r7, #12]
-	    	        counter2--;
+ 80009e4:	2301      	movs	r3, #1
+ 80009e6:	607b      	str	r3, [r7, #4]
+	    }
+	    if (counter2 > 2 && counter1 > 0 && counter3 == 1) {
  80009e8:	68bb      	ldr	r3, [r7, #8]
- 80009ea:	3b01      	subs	r3, #1
- 80009ec:	60bb      	str	r3, [r7, #8]
-	    	        Display7Seg(counter1);
- 80009ee:	68f8      	ldr	r0, [r7, #12]
- 80009f0:	f7ff fbac 	bl	800014c <Display7Seg>
-	    	        Display7Seg2(counter2);
- 80009f4:	68b8      	ldr	r0, [r7, #8]
- 80009f6:	f7ff fd2f 	bl	8000458 <Display7Seg2>
-	    	    }
-	    	    if (counter2 == 2 && counter1 == 0) {
- 80009fa:	68bb      	ldr	r3, [r7, #8]
- 80009fc:	2b02      	cmp	r3, #2
- 80009fe:	d11c      	bne.n	8000a3a <main+0x242>
- 8000a00:	68fb      	ldr	r3, [r7, #12]
- 8000a02:	2b00      	cmp	r3, #0
- 8000a04:	d119      	bne.n	8000a3a <main+0x242>
-	    	        HAL_GPIO_WritePin(LED_GREENX_GPIO_Port, LED_GREENX_Pin, GPIO_PIN_RESET);
- 8000a06:	2200      	movs	r2, #0
- 8000a08:	f44f 7100 	mov.w	r1, #512	; 0x200
- 8000a0c:	481c      	ldr	r0, [pc, #112]	; (8000a80 <main+0x288>)
- 8000a0e:	f000 fc3b 	bl	8001288 <HAL_GPIO_WritePin>
-	    	        HAL_GPIO_WritePin(LED_YELLOWX_GPIO_Port, LED_YELLOWX_Pin, GPIO_PIN_SET);
- 8000a12:	2201      	movs	r2, #1
- 8000a14:	f44f 7180 	mov.w	r1, #256	; 0x100
- 8000a18:	4819      	ldr	r0, [pc, #100]	; (8000a80 <main+0x288>)
- 8000a1a:	f000 fc35 	bl	8001288 <HAL_GPIO_WritePin>
-	    	        counter1 = 2;
- 8000a1e:	2302      	movs	r3, #2
- 8000a20:	60fb      	str	r3, [r7, #12]
-	    	        Display7Seg(counter1);
- 8000a22:	68f8      	ldr	r0, [r7, #12]
- 8000a24:	f7ff fb92 	bl	800014c <Display7Seg>
-	    	        Display7Seg2(counter2);
- 8000a28:	68b8      	ldr	r0, [r7, #8]
- 8000a2a:	f7ff fd15 	bl	8000458 <Display7Seg2>
+ 80009ea:	2b02      	cmp	r3, #2
+ 80009ec:	dd11      	ble.n	8000a12 <main+0x21a>
+ 80009ee:	68fb      	ldr	r3, [r7, #12]
+ 80009f0:	2b00      	cmp	r3, #0
+ 80009f2:	dd0e      	ble.n	8000a12 <main+0x21a>
+ 80009f4:	687b      	ldr	r3, [r7, #4]
+ 80009f6:	2b01      	cmp	r3, #1
+ 80009f8:	d10b      	bne.n	8000a12 <main+0x21a>
 	    	        counter1--;
- 8000a2e:	68fb      	ldr	r3, [r7, #12]
- 8000a30:	3b01      	subs	r3, #1
- 8000a32:	60fb      	str	r3, [r7, #12]
+ 80009fa:	68fb      	ldr	r3, [r7, #12]
+ 80009fc:	3b01      	subs	r3, #1
+ 80009fe:	60fb      	str	r3, [r7, #12]
 	    	        counter2--;
- 8000a34:	68bb      	ldr	r3, [r7, #8]
- 8000a36:	3b01      	subs	r3, #1
- 8000a38:	60bb      	str	r3, [r7, #8]
-	    	    }
+ 8000a00:	68bb      	ldr	r3, [r7, #8]
+ 8000a02:	3b01      	subs	r3, #1
+ 8000a04:	60bb      	str	r3, [r7, #8]
+	    	        Display7Seg(counter1);
+ 8000a06:	68f8      	ldr	r0, [r7, #12]
+ 8000a08:	f7ff fba0 	bl	800014c <Display7Seg>
+	    	        Display7Seg2(counter2);
+ 8000a0c:	68b8      	ldr	r0, [r7, #8]
+ 8000a0e:	f7ff fd23 	bl	8000458 <Display7Seg2>
+	    }
+	    if (counter2 == 2 && counter1 <= 0) {
+ 8000a12:	68bb      	ldr	r3, [r7, #8]
+ 8000a14:	2b02      	cmp	r3, #2
+ 8000a16:	d11c      	bne.n	8000a52 <main+0x25a>
+ 8000a18:	68fb      	ldr	r3, [r7, #12]
+ 8000a1a:	2b00      	cmp	r3, #0
+ 8000a1c:	dc19      	bgt.n	8000a52 <main+0x25a>
+	    	        HAL_GPIO_WritePin(LED_GREENX_GPIO_Port, LED_GREENX_Pin, GPIO_PIN_RESET);
+ 8000a1e:	2200      	movs	r2, #0
+ 8000a20:	f44f 7100 	mov.w	r1, #512	; 0x200
+ 8000a24:	4816      	ldr	r0, [pc, #88]	; (8000a80 <main+0x288>)
+ 8000a26:	f000 fc2f 	bl	8001288 <HAL_GPIO_WritePin>
+	    	        HAL_GPIO_WritePin(LED_YELLOWX_GPIO_Port, LED_YELLOWX_Pin, GPIO_PIN_SET);
+ 8000a2a:	2201      	movs	r2, #1
+ 8000a2c:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 8000a30:	4813      	ldr	r0, [pc, #76]	; (8000a80 <main+0x288>)
+ 8000a32:	f000 fc29 	bl	8001288 <HAL_GPIO_WritePin>
+	    	        counter1 = 2;
+ 8000a36:	2302      	movs	r3, #2
+ 8000a38:	60fb      	str	r3, [r7, #12]
+	    	        Display7Seg(counter1);
+ 8000a3a:	68f8      	ldr	r0, [r7, #12]
+ 8000a3c:	f7ff fb86 	bl	800014c <Display7Seg>
+	    	        Display7Seg2(counter2);
+ 8000a40:	68b8      	ldr	r0, [r7, #8]
+ 8000a42:	f7ff fd09 	bl	8000458 <Display7Seg2>
+	    	        counter1--;
+ 8000a46:	68fb      	ldr	r3, [r7, #12]
+ 8000a48:	3b01      	subs	r3, #1
+ 8000a4a:	60fb      	str	r3, [r7, #12]
+	    	        counter2--;
+ 8000a4c:	68bb      	ldr	r3, [r7, #8]
+ 8000a4e:	3b01      	subs	r3, #1
+ 8000a50:	60bb      	str	r3, [r7, #8]
+	    }
+	    if (counter1 <= 0 && counter2 <= 0 && counter3 == 1) {
+ 8000a52:	68fb      	ldr	r3, [r7, #12]
+ 8000a54:	2b00      	cmp	r3, #0
+ 8000a56:	dc0b      	bgt.n	8000a70 <main+0x278>
+ 8000a58:	68bb      	ldr	r3, [r7, #8]
+ 8000a5a:	2b00      	cmp	r3, #0
+ 8000a5c:	dc08      	bgt.n	8000a70 <main+0x278>
+ 8000a5e:	687b      	ldr	r3, [r7, #4]
+ 8000a60:	2b01      	cmp	r3, #1
+ 8000a62:	d105      	bne.n	8000a70 <main+0x278>
 
-	    	    if (counter1 <= 0 && counter2 <= 0 && counter3 == 1) {
- 8000a3a:	68fb      	ldr	r3, [r7, #12]
- 8000a3c:	2b00      	cmp	r3, #0
- 8000a3e:	dc17      	bgt.n	8000a70 <main+0x278>
- 8000a40:	68bb      	ldr	r3, [r7, #8]
- 8000a42:	2b00      	cmp	r3, #0
- 8000a44:	dc14      	bgt.n	8000a70 <main+0x278>
- 8000a46:	687b      	ldr	r3, [r7, #4]
- 8000a48:	2b01      	cmp	r3, #1
- 8000a4a:	d111      	bne.n	8000a70 <main+0x278>
-	    	        HAL_GPIO_WritePin(LED_YELLOWX_GPIO_Port, LED_YELLOWX_Pin, GPIO_PIN_RESET);
- 8000a4c:	2200      	movs	r2, #0
- 8000a4e:	f44f 7180 	mov.w	r1, #256	; 0x100
- 8000a52:	480b      	ldr	r0, [pc, #44]	; (8000a80 <main+0x288>)
- 8000a54:	f000 fc18 	bl	8001288 <HAL_GPIO_WritePin>
-	    	        HAL_GPIO_WritePin(LED_REDY_GPIO_Port, LED_REDY_Pin, GPIO_PIN_RESET);
- 8000a58:	2200      	movs	r2, #0
- 8000a5a:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 8000a5e:	4808      	ldr	r0, [pc, #32]	; (8000a80 <main+0x288>)
- 8000a60:	f000 fc12 	bl	8001288 <HAL_GPIO_WritePin>
 	    	        counter1 = 6;
  8000a64:	2306      	movs	r3, #6
  8000a66:	60fb      	str	r3, [r7, #12]
@@ -1269,7 +1270,7 @@ int main(void)
 	    	        counter3 = 0;
  8000a6c:	2300      	movs	r3, #0
  8000a6e:	607b      	str	r3, [r7, #4]
-	    	    }
+	    }
 	    HAL_Delay(1000);
  8000a70:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000a74:	f000 f986 	bl	8000d84 <HAL_Delay>
